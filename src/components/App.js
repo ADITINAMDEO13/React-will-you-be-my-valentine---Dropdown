@@ -1,5 +1,6 @@
 import React, { useState,useReducer } from "react";
 import "./../styles/App.css";
+import Display from "./Display";
 
 
 const states = [{
@@ -140,53 +141,10 @@ const states = [{
 
 function App() 
 {
-  // Do not alter/remove main div
-  const [state,setState]=useState(0);
-  const [city,setCity]=useState(0);
-  const [landmark,setLandmark]=useState(0);
-  function handleChange(event){
-    const {value}=event.target;
-    setState(value)
-    setCity(0)
-    setLandmark(0)
-    
-  }
-  function handleCity(event){
-    setCity(event.target.value)
-    setLandmark(0)
-  }
-  function handleLandmark(event){
-    setLandmark(event.target.value);
-  }
+	// Do not alter/remove main div
 	return (
 	<div id="main">
-
-      <select value={state} onChange={handleChange}>
-        {states.map((itm,idx)=>(
-          <option key={idx} value={idx}>{itm.name}</option>
-        ))}
-      </select>
-      <select  value={city} onChange={handleCity}>
-          {states[state].city.map((itm,idx)=>(
-            <option key={idx} value={idx}>{itm.name}</option>
-          ))}
-      </select>
-      <select  value={landmark} onChange={handleLandmark}>
-        {states[state].city[city].landmarks.map((itm,idx)=>(
-          <option key={idx} value={idx}>{itm.name}</option>
-        ))}
-      </select>
-    
-      <div >{states[state].name}</div>
-      <div >{states[state].description}</div>
-    
-      <div >{states[state].city[city].name}</div>
-      <div >{states[state].city[city].description}</div>
-    
-      <div >{states[state].city[city].landmarks[landmark].name}</div>
-      <div >{states[state].city[city].landmarks[landmark].description}</div>
-   
-    
+		<Display states={states}/>
 	</div>
 	);
 }
